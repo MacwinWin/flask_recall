@@ -42,4 +42,4 @@ flask.request object's attributes and methods, including:
 
 * output
 <p align="center">
-    <img src="./images/Screenshot from 2020-09-12 11-31-46.png">
+    <img src="./images/Screenshot from 2020-09-12 11-53-04.png">
