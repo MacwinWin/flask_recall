@@ -1,4 +1,4 @@
-## request
+## About
 flask.request object's attributes and methods, including:
 
 * path
@@ -25,3 +25,21 @@ flask.request object's attributes and methods, including:
 * referrer
 * scheme
 * user_agent
+
+## Usage
+* import [flask_test.request.json](./flask_test.request.json) file to Postman
+<p align="center">
+    <img src="./images/Screenshot from 2020-09-12 11-20-01.png">
+
+* run flask
+```bash
+>>> FLASK_ENV=development flask run
+```
+
+* send request
+<p align="center">
+    <img src="./images/Screenshot from 2020-09-12 11-31-04.png">
+
+* output
+<p align="center">
+    <img src="./images/Screenshot from 2020-09-12 11-31-46.png">
