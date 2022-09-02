@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @author : microfat
-# @time   : 09/12/20 08:40:59
+# @time   : 09/02/22 17:40:56
 # @File   : app.py
 
 '''
 Test Request object's attributes and methods
 '''
 
+import pandas as pd
 from flask import Flask, request, redirect, url_for
 
 app = Flask(__name__)
+
 
 @app.route('/<path:name>', methods=['GET', 'POST'])
 def gen(name):
@@ -30,11 +32,26 @@ def gen(name):
     print('\033[1;33;44mfiles     :\033[0m', '\n', request.files)
     print('\033[1;33;44mform      :\033[0m', '\n', request.form)
     print('\033[1;33;44mvalues    :\033[0m', '\n', request.values)
-    print('\033[1;33;44mget_data  :\033[0m', '\n', request.get_data(cache=True, as_text=False, parse_form_data=False))
-    print('\033[1;33;44mget_json  :\033[0m', '\n', request.get_json(force=False, silent=False, cache=True))
+    print(
+        '\033[1;33;44mget_data  :\033[0m',
+        '\n',
+        request.get_data(cache=True, as_text=False, parse_form_data=False),
+    )
+    if 'application/json' in request.content_type:
+        print(
+            '\033[1;33;44mget_json  :\033[0m',
+            '\n',
+            request.get_json(force=False, silent=False, cache=True),
+        )
+        print('\033[1;33;44mjson      :\033[0m', '\n', request.json)
+    elif 'multipart/form-data' in request.content_type:
+        print(
+            '\033[1;33;44mDataFrame :\033[0m',
+            '\n',
+            pd.read_excel(request.files.get('file')),
+        )
     print('\033[1;33;44mheaders   :\033[0m', '\n', request.headers)
     print('\033[1;33;44mis_json   :\033[0m', '\n', request.is_json)
-    print('\033[1;33;44mjson      :\033[0m', '\n', request.json)
     print('\033[1;33;44mmethod    :\033[0m', '\n', request.method)
     print('\033[1;33;44mreferrer  :\033[0m', '\n', request.referrer)
     print('\033[1;33;44mscheme    :\033[0m', '\n', request.scheme)
